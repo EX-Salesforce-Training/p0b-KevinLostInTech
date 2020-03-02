@@ -1,0 +1,105 @@
+ //Kevin Project 0 Bravo Test Class
+
+@isTest
+public class P0BTest {
+
+    @isTest
+    public static void fibTest(){
+        
+        Integer output= P0B.fibMethod(0);
+        system.assertEquals(0, output); 
+        
+        output= P0B.fibMethod(1);
+        system.assertEquals(1, output);
+        
+        output= P0B.fibMethod(5);
+        system.assertEquals(5, output);
+        
+        output= P0B.fibMethod(10);
+        system.assertEquals(55, output);
+        
+        output= P0B.fibMethod(2);
+        system.assertNotEquals(2, output);
+    }
+    
+    @isTest
+    public static void sortTest(){
+        
+        List<integer> input= new List<integer> {2,4,5,1,3,1};
+        List<integer> expectedOutput= new List<integer> {1,1,2,3,4,5};
+        List<integer> actualOutput=P0B.sortMethod(input);
+        system.assertEquals(expectedOutput,actualOutput);
+        
+        List<integer> input2= new List<integer> {5,4,3,2,1};
+        List<integer> expectedOutput2= new List<integer> {1,2,3,4,5};
+        List<integer> actualOutput2=P0B.sortMethod(input2);
+        system.assertEquals(expectedOutput2,actualOutput2);
+    }
+    
+    @isTest
+    public static void factorialTest(){
+        
+        Integer output= P0B.factorialMethod(0);
+        system.assertEquals(1, output);
+        
+        output= P0B.factorialMethod(1);
+        system.assertEquals(1, output);
+        
+        output= P0B.factorialMethod(3);
+        system.assertEquals(6, output);
+    }
+    
+    @isTest
+    public static void rotateTest(){
+        
+        List<integer> inputList= new List<integer>{1,2,3,4,5};
+        Integer inputInt=1;
+        List<integer> expectedOutput=new List<integer>{2,3,4,5,1};
+        List<integer> actualOutput=P0B.rotateMethod(inputList, inputInt);
+        system.assertEquals(expectedOutput,actualOutput);
+        
+        List<integer> inputList2= new List<integer>{1,2,3,4,5};
+        inputInt=6;
+        List<integer> expectedOutput2=new List<integer>{2,3,4,5,1};
+        List<integer> actualOutput2=P0B.rotateMethod(inputList2, inputInt);
+        system.assertEquals(expectedOutput2,actualOutput2);
+        
+        List<integer> inputList3= new List<integer>{1,2,3,4,5};
+        inputInt=3;
+        List<integer> expectedOutput3=new List<integer>{4,5,1,2,3};
+        List<integer> actualOutput3=P0B.rotateMethod(inputList3, inputInt);
+        system.assertEquals(expectedOutput3,actualOutput3);
+    }
+
+ 
+    @isTest
+    public static void balancedTest(){
+        
+        Boolean output=P0B.balancedMethod('()');
+        system.assertEquals(True,output);
+        
+        output=P0B.balancedMethod('()()');
+        system.assertEquals(True,output);
+        
+        output=P0B.balancedMethod('(())');
+        system.assertEquals(True,output);
+        
+        output=P0B.balancedMethod('({[]})');
+        system.assertEquals(True,output);
+                                          
+        output=P0B.balancedMethod('(');
+        system.assertEquals(False,output); 
+                                          
+        output=P0B.balancedMethod(')');
+        system.assertEquals(False,output); 
+                                          
+        output=P0B.balancedMethod('(()');
+        system.assertEquals(False,output); 
+                                          
+        output=P0B.balancedMethod('())');
+        system.assertEquals(False,output); 
+                                          
+        output=P0B.balancedMethod('([)]');
+        system.assertEquals(False,output);                                   
+    }
+}

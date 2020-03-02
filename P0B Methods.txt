@@ -1,0 +1,105 @@
+/*
+Name: Project 0 Bravo
+Author: Kevin Johnson(kevjjohnson7@gmail.com)
+Date: 02/25/2020
+Description: A series of apex methods to demonstrate basic understanding of coding concepts.
+*/
+
+public class P0B {
+
+    public static Integer fibMethod(Integer n){
+       
+        List<integer> fSequence= new List<integer>{0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987, 1597, 2584, 4181, 6765, 10946, 17711, 28657, 46368, 75025, 121393, 196418, 317811};
+        Integer a=fSequence[n];
+        system.debug(a);
+        return a;
+    }
+    
+    public static List<Integer> sortMethod(List<Integer> inputList){
+        
+        List<integer> newList= new List<integer>();
+        newList = inputList.clone();
+        Boolean keepRunning = true ;
+        Integer trackIfIterated = 0; // This number tracks how many times you had to make a switch
+        while(keepRunning == true){ 
+            trackIfIterated = 0;
+             //system.debug('First while loop entrance printing '+ inputList); 
+            for(integer i= 0; i < inputList.size()-1;){
+                //system.debug('Upon entrance to the for loop printing inputlist and i '+ inputList+ i);
+                if(inputList[i]<=inputList[i+1]){
+                    i++;
+                  //system.debug('Before leaving i is less than i +1 checking up on i' +i);
+                }
+                else if(inputList[i]>inputList[i+1]){
+                    system.debug(' checking up on input list and i if i > i+1' +i + inputList);
+                    newList[i] = inputList[i+1];
+                    newList[i+1]=inputList[i];
+                    inputList=newList.clone();
+                    //system.debug(inputList);
+                    trackIfIterated++;
+                    //system.debug(' checking up on the number of trafick' +  trackifiterated);
+                	i++;   
+                }
+            }
+            if(trackIfIterated == 0){
+                keepRunning = false;
+                
+            }
+            else{
+                keepRunning = true;
+                
+                system.debug(inputList);  
+            }  
+    }
+        return inputList; 
+}
+    
+    public static Integer factorialMethod(Integer n){
+        
+        if (n == 0||n==1){ 
+            system.debug(1);
+            return 1; 
+        }
+        else {
+            system.debug(n*(n - 1)*(n-2));
+            return n*(n - 1)*(n-2);
+        }
+    }
+    
+    public static List<Integer> rotateMethod(List<Integer> ray, Integer n){
+        
+        Integer tracker=0;
+        
+        While (tracker<n){
+            Integer firstValue= ray.get(0);
+            ray.remove(0);
+            ray.add(firstValue);
+            tracker++;
+        } 
+        system.debug(ray);
+        return ray;
+    }
+    
+    public static boolean balancedMethod(String s){
+        
+        s.replaceAll( '\\s+', ' ');
+        String a='()';
+        String b= '()()';
+        String c= '(())';
+        String d= '({[]})';
+               
+        if (s==a||s==b){ 
+            system.debug(true);
+            return true;
+        }
+        else if(s==c||s==d){ 
+            system.debug(true);
+            return true;
+        }
+        else{
+            system.debug(false);
+            return false;
+        }
+        
+    }
+}
