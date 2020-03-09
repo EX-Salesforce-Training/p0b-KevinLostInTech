@@ -1,0 +1,57 @@
+/*
+Name: Project 0 Bravo
+Author: Kevin Johnson(kevjjohnson7@gmail.com)
+Date: 03/04/2020
+Description: A series of apex methods to demonstrate basic understanding of coding concepts.
+*/
+
+public class P0B2 {
+    
+    //This method below, updateAccountSize, takes a list of all accounts and categprizes each 
+    //account based on the value in the field "Number Of Employees". The categorization 
+    //is then placed into the custom field "Size" for each account in the list.
+    List<Account> allAccounts=[SELECT Name, NumberOfEmployees, Size__c FROM Account];
+    public void updateAccountSize(List<Account> reviewedAccount){
+
+        
+        for(Integer i=0; i<allAccounts.size();i++){      
+            if (allAccounts[i].NumberOfEmployees<=1000){
+                
+                reviewedAccount.Size__c= 'Small';
+            }
+            else if(allAccounts[i].NumberOfEmployees>1000 && allAccounts.size()<=10000){
+                
+                reviewedAccount.Size__c= 'Medium';
+            }
+            else{
+                
+                reviewedAccount.Size__c= 'Large';
+            }
+        }
+        update allAccounts;
+            
+    //Additionally [SELECT Name FROM Account WHERE NumberOfEmployees<=1000] and 
+    //similar can be used to filter for each category and then assign Accounts 
+    //falling in that category with the coresponding Size field value.
+            
+    }
+    
+    //The below method, updateCALeads, reads all accounts with California is it's 
+    //State field value and updates their Status and Description.
+    public void updateCALeads(List<Account> a){
+        List<Lead> leadsInCA=[SELECT Name, status, description FROM Lead WHERE State__c= 'California'];
+        leadsInCA.Status= 'Closed - Not Converted';
+        leadsInCA.Description= 'We are no longer doing business in California.';
+        update leadsInCA;
+    }
+    
+    //The below method, closePastDueOpportunities, takes a list of all oportunities 
+    //with a past Close Date, and only the ones who have not been identified as 
+    //Closed Won. Then assignes/updates their Stage to Close Lost.    
+    public static void closePastDueOpportunities(){
+          List<Opportunity> lostOpportunities=[SELECT StageName, CloseDate From Opportunity WHERE CloseDate<:Date.today() AND StageName !='Closed Won'];
+          lostOpportunities.StageName= 'Closed Lost';
+          update lostOportunities;
+    }
+    
+}
